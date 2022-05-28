@@ -10,6 +10,8 @@ namespace ReservationService.Profiles
         {
             CreateMap<Reservation, ReservationReadDto>();
             CreateMap<ReservationCreateDto, Reservation>();
+            CreateMap<Car, CarReadDto>();
+            CreateMap<CarCreateDto, Car>();
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ReservationService.Data;
 using ReservationService.Dtos;
 using ReservationService.Models;
+using Microsoft.Extensions.Logging;
 
 namespace ReservationService.Controllers
 {
@@ -15,33 +16,57 @@ namespace ReservationService.Controllers
     {
         private IReservationRepo repository;
         private IMapper mapper;
+        private readonly ILogger<ReservataionsController> logger;
 
         public ReservataionsController(
             IReservationRepo repository,
-            IMapper mapper)
+            IMapper mapper,
+            ILogger<ReservataionsController> logger)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         [HttpGet]
         public ActionResult<IEnumerable<ReservationReadDto>> GetReservations()
         {
-            Console.WriteLine("--> Getting Reservations....");
+            this.logger.LogInformation("--> Getting Reservations....");
 
             var allReservations = this.repository.GetAllReservations();
             return Ok(this.mapper.Map<IEnumerable<ReservationReadDto>>(allReservations));
         }
 
         [HttpGet]
-        public ActionResult<ReservationReadDto> GetReservationById(int id)
+        public ActionResult<ReservationReadDto> GetReservationById(int reservationId)
         {
-            Console.WriteLine("HUIIII");
-            var singleReservation = this.repository.GetReservationById(id);
+            this.logger.LogInformation($"--> Hit GetReservationById: {reservationId}");
+            var singleReservation = this.repository.GetReservationById(reservationId);
             {
                 return Ok(this.mapper.Map<IEnumerable<ReservationReadDto>>(singleReservation));
             }
         }
+
+        [HttpGet("{carId}", Name = "GetReservationsForCar")]
+        public ActionResult<IEnumerable<ReservationReadDto>> GetReservationsForCar(int carId)
+        {
+            this.logger.LogInformation($"--> Hit GetReservationsForCar:{carId}");
+
+            if (!this.repository.CarExists(carId))
+            {
+                return NotFound();
+            }
+
+            var reservations = this.repository.GetReservationsByCarId(carId);
+
+            if (reservations == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(this.mapper.Map<IEnumerable<ReservationReadDto>>(reservations));
+        }
+
 
         [HttpPost]
         public async Task<ActionResult<ReservationReadDto>> CreateReservation(
@@ -52,7 +77,9 @@ namespace ReservationService.Controllers
             // TODO viknay: check what additional verification is needed
             if (reservationCreateDto == null)
             {
-                throw new ArgumentNullException("Please provide valid input!");
+                var exception = new ArgumentNullException("Please provide valid input!");
+                this.logger.LogError(exception.Message);
+                throw exception;
             }
 
 
@@ -71,7 +98,9 @@ namespace ReservationService.Controllers
         {
             if (id < 0)
             {
-                throw new Exception("Ids cannot be negative!");
+                var exception = new Exception("Ids cannot be negative!");
+                this.logger.LogError(exception.Message);
+                throw exception;
             }
 
             try
@@ -81,7 +110,9 @@ namespace ReservationService.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception("Invalid reservation Id.", ex);
+                var exception = new Exception("Invalid reservation Id.", ex);
+                this.logger.LogError(exception.Message);
+                throw exception;
             }
         }
 

@@ -20,5 +20,13 @@ namespace ReservationService.Models
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }
+
+        public int CarId { get; set; }
+
+        public Car Car { get; set; }
+
+        public User Owner { get; set; }
+
+        public User Lessee { get; set; }
     }
 }

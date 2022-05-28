@@ -13,6 +13,7 @@ namespace ReservationService.Data
         {
             this.context = context;
         }
+        // Reservations
         public void CreateReservation(Reservation reservation)
         {
             if (reservation == null)
@@ -33,7 +34,7 @@ namespace ReservationService.Data
 
         public Reservation GetReservationById(int Id)
         {
-                return this.context.Reservations.FirstOrDefault(r => r.Id == Id);
+            return this.context.Reservations.FirstOrDefault(r => r.Id == Id);
         }
 
         public void DeleteReservationById(int Id)
@@ -51,9 +52,31 @@ namespace ReservationService.Data
 
         }
 
+        public IEnumerable<Reservation> GetReservationsByCarId(int carId)
+        {
+            return this.context.Reservations.Where(r => r.CarId == carId);
+        }
+
+        public bool ReservationExists(int reservationId)
+        {
+            return this.context.Reservations.Any(r => r.Id == reservationId);
+        }
+
         public bool SaveChanges()
         {
             return (this.context.SaveChanges() >= 0);
+        }
+
+        // Cars
+
+        public Car GetCarByReservationId(int reservationId)
+        {
+            return this.context.Reservations.FirstOrDefault(r => r.Id == reservationId).Car;
+        }
+
+        public bool CarExists(int carId)
+        {
+            return this.context.Cars.Any(c => c.Id == carId);
         }
     }
 }

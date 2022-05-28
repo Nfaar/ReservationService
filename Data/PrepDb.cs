@@ -11,7 +11,7 @@ namespace ReservationService.Data
     {
         public static void PrepPopulation(IApplicationBuilder app, bool isProd)
         {
-            using(var serviceScope = app.ApplicationServices.CreateScope())
+            using (var serviceScope = app.ApplicationServices.CreateScope())
             {
                 SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), isProd);
             }
@@ -19,28 +19,28 @@ namespace ReservationService.Data
 
 
         private static void SeedData(AppDbContext context, bool isProd)
-        {   
-            if(isProd)
+        {
+            if (isProd)
             {
                 Console.WriteLine("--> Attempting to apply migrations...");
                 try
                 {
                     context.Database.Migrate();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine($"--> Could not run migrations: {ex.Message}");
                 }
             }
 
-            if(!context.Reservations.Any())
+            if (!context.Reservations.Any())
             {
                 Console.WriteLine("Seeding data");
 
                 context.Reservations.AddRange(
-                    new Reservation() {ReservationNumber = "#001", Cost = 23.99},
-                    new Reservation() {ReservationNumber = "#002", Cost = 25.99},
-                    new Reservation() {ReservationNumber = "#003", Cost = 28.99}
+                    new Reservation() { ReservationNumber = "#001", Cost = 23.99 },
+                    new Reservation() { ReservationNumber = "#002", Cost = 25.99 },
+                    new Reservation() { ReservationNumber = "#003", Cost = 28.99 }
                 );
 
                 context.SaveChanges();

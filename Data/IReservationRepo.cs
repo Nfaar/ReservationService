@@ -7,12 +7,25 @@ namespace ReservationService.Data
     {
         bool SaveChanges();
 
+        // Reservations
+
         IEnumerable<Reservation> GetAllReservations();
 
         Reservation GetReservationById(int Id);
 
+        IEnumerable<Reservation> GetReservationsByCarId(int carId);
+
         void CreateReservation(Reservation reservation);
 
-        void DeleteReservationById(int Id);
+        void DeleteReservationById(int reservationId);
+
+        bool ReservationExists(int reservationId);
+
+        // Car
+
+        Car GetCarByReservationId(int reservationId);
+
+        bool CarExists(int carId);
+
     }
 }
