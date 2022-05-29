@@ -38,9 +38,9 @@ namespace ReservationService.Data
                 Console.WriteLine("Seeding data");
 
                 context.Reservations.AddRange(
-                    new Reservation() { ReservationNumber = "#001", Cost = 23.99 },
-                    new Reservation() { ReservationNumber = "#002", Cost = 25.99 },
-                    new Reservation() { ReservationNumber = "#003", Cost = 28.99 }
+                    new Reservation() { ReservationNumber = "#001", Cost = 23.99, StartTime = DateTime.Now, CarId = 21 },
+                    new Reservation() { ReservationNumber = "#002", Cost = 25.99, StartTime = DateTime.Now, CarId = 11 },
+                    new Reservation() { ReservationNumber = "#003", Cost = 28.99, StartTime = DateTime.Now, CarId = 35 }
                 );
 
                 context.SaveChanges();
