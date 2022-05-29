@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ReservationService.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/api/reservations/")]
     [ApiController]
     public class ReservataionsController : ControllerBase
     {
@@ -37,17 +37,17 @@ namespace ReservationService.Controllers
             return Ok(this.mapper.Map<IEnumerable<ReservationReadDto>>(allReservations));
         }
 
-        [HttpGet]
+        [HttpGet("{reservationId}")]
         public ActionResult<ReservationReadDto> GetReservationById(int reservationId)
         {
             this.logger.LogInformation($"--> Hit GetReservationById: {reservationId}");
             var singleReservation = this.repository.GetReservationById(reservationId);
             {
-                return Ok(this.mapper.Map<IEnumerable<ReservationReadDto>>(singleReservation));
+                return Ok(this.mapper.Map<ReservationReadDto>(singleReservation));
             }
         }
 
-        [HttpGet("{carId}", Name = "GetReservationsForCar")]
+        [HttpGet("{carId}/reservations", Name = "GetReservationsForCar")]
         public ActionResult<IEnumerable<ReservationReadDto>> GetReservationsForCar(int carId)
         {
             this.logger.LogInformation($"--> Hit GetReservationsForCar:{carId}");
