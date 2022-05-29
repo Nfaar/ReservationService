@@ -25,8 +25,6 @@ namespace ReservationService.Models
 
         public Car Car { get; set; }
 
-        public User Owner { get; set; }
-
-        public User Lessee { get; set; }
+        public User User { get; set; }
     }
 }
