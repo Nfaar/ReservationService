@@ -69,7 +69,7 @@ namespace ReservationService.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<ReservationReadDto>> CreateReservation(
+        public ActionResult<ReservationReadDto> CreateReservation(
             ReservationCreateDto reservationCreateDto)
         {
 

@@ -153,3 +153,7 @@ C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual
 C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\zh-Hant\Microsoft.TestPlatform.CommunicationUtilities.resources.dll
 C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\zh-Hant\Microsoft.TestPlatform.CrossPlatEngine.resources.dll
 C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\zh-Hant\Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Testing.dll
+C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\Microsoft.AspNetCore.TestHost.dll
+C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\System.IO.Pipelines.dll
