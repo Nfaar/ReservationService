@@ -69,14 +69,34 @@ namespace ReservationService.Data
 
         // Cars
 
-        public Car GetCarByReservationId(int reservationId)
+        public Car GetCarById(int carId)
         {
-            return this.context.Reservations.FirstOrDefault(r => r.Id == reservationId).Car;
+            return this.context.Cars.FirstOrDefault(r => r.Id == carId);
         }
 
         public bool CarExists(int carId)
         {
             return this.context.Cars.Any(c => c.Id == carId);
+        }
+
+        public bool ExternalCarExists(int externalCarId)
+        {
+            return this.context.Cars.Any(c => c.ExternalId == externalCarId);
+        }
+
+        public void CreateCar(Car car)
+        {
+            if (car == null)
+            {
+                throw new ArgumentNullException(nameof(car));
+            }
+
+            this.context.Cars.Add(car);
+        }
+
+        public List<Car> GetAllCars()
+        {
+            return this.context.Cars.ToList();
         }
     }
 }

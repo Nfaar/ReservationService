@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace ReservationService.Controllers
 {
-    [Route("/api/reservations/")]
+    [Route("/api/r/reservations/")]
     [ApiController]
     public class ReservataionsController : ControllerBase
     {
