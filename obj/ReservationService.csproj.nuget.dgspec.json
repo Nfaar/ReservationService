@@ -66,9 +66,9 @@
               "target": "Package",
               "version": "[5.0.8, )"
             },
-            "Microsoft.Extensions.Logging.Log4Net.AspNetCore": {
+            "Microsoft.NET.Test.SDK": {
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[17.2.0, )"
             },
             "RabbitMQ.Client": {
               "target": "Package",
@@ -81,6 +81,14 @@
             "log4net": {
               "target": "Package",
               "version": "[2.0.12, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.1, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.5, )"
             }
           },
           "imports": [
