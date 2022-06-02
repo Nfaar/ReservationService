@@ -7,6 +7,7 @@ using ReservationService.Data;
 using ReservationService.Dtos;
 using ReservationService.Models;
 using Microsoft.Extensions.Logging;
+using ReservationService.Business;
 
 namespace ReservationService.Controllers
 {
@@ -17,15 +18,18 @@ namespace ReservationService.Controllers
         private IReservationRepo repository;
         private IMapper mapper;
         private readonly ILogger<ReservataionsController> logger;
+        private readonly IReservationLogic reservationLogic;
 
         public ReservataionsController(
             IReservationRepo repository,
             IMapper mapper,
-            ILogger<ReservataionsController> logger)
+            ILogger<ReservataionsController> logger,
+            IReservationLogic reservationLogic)
         {
             this.repository = repository;
             this.mapper = mapper;
             this.logger = logger;
+            this.reservationLogic = reservationLogic;
         }
 
         [HttpGet]
@@ -69,12 +73,13 @@ namespace ReservationService.Controllers
 
 
         [HttpPost]
-        public async Task<ActionResult<ReservationReadDto>> CreateReservation(
+        public ActionResult<ReservationReadDto> CreateReservation(
             ReservationCreateDto reservationCreateDto)
         {
 
             // If it is not null store it in the database
             // TODO viknay: check what additional verification is needed
+            System.Console.WriteLine("Hitting reseration post.");
             if (reservationCreateDto == null)
             {
                 var exception = new ArgumentNullException("Please provide valid input!");
@@ -84,13 +89,30 @@ namespace ReservationService.Controllers
 
 
             var reservationModel = this.mapper.Map<Reservation>(reservationCreateDto);
+
+            System.Console.WriteLine($"HP: {reservationModel.HourlyPrice}");
+
+            System.Console.WriteLine($"ST: {reservationModel.StartTime}");
+
+            System.Console.WriteLine($"ET: {reservationModel.EndTime}");
+
+            if (reservationModel.HourlyPrice! > 0 ||
+            reservationModel.StartTime != new DateTime() ||
+            reservationModel.EndTime != new DateTime())
+            {
+                reservationModel.Cost = this.reservationLogic.CalculatePriceForReservation(
+                    reservationModel.HourlyPrice,
+                    reservationModel.StartTime,
+                    reservationModel.EndTime
+                );
+            }
             this.repository.CreateReservation(reservationModel);
 
             var reservationReadDto = this.mapper.Map<ReservationReadDto>(reservationModel);
 
             // TODO viknay: publish to event bus
 
-            return CreatedAtRoute(nameof(GetReservationById), new { reservationReadDto.Id }, reservationReadDto);
+            return Ok(reservationReadDto);
         }
 
         [HttpDelete]

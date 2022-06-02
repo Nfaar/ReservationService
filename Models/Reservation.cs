@@ -9,8 +9,9 @@ namespace ReservationService.Models
         [Required]
         public int Id { get; set; }
 
-        [Required]
         public double Cost { get; set; }
+
+        public double HourlyPrice { get; set; }
 
         public string DiscountCode { get; set; }
 

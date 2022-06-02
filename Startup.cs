@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using ReservationService.AsyncDataServices;
+using ReservationService.Business;
 using ReservationService.Data;
 using ReservationService.EventProcessing;
 
@@ -49,6 +50,7 @@ namespace ReservationService
             services.AddControllers();
 
             services.AddHostedService<MessageBusSubscriber>();
+            services.AddScoped<IReservationLogic, ReservationLogic>();
 
             services.AddSingleton<IEventProcessor, EventProcessor>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
