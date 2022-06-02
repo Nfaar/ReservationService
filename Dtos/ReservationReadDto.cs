@@ -1,4 +1,5 @@
 using System;
+using ReservationService.Models;
 
 namespace ReservationService.Dtos
 {
@@ -16,5 +17,7 @@ namespace ReservationService.Dtos
         public DateTime EndTime { get; set; }
 
         public int CarId { get; set; }
+
+        public double HourlyPrice { get; set; }
     }
 }
