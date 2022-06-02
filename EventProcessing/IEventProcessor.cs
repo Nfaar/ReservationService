@@ -1,0 +1,7 @@
+namespace ReservationService.EventProcessing
+{
+    public interface IEventProcessor
+    {
+        void ProcessEvent(string message);
+    }
+}

@@ -23,9 +23,13 @@ namespace ReservationService.Data
 
         // Car
 
-        Car GetCarByReservationId(int reservationId);
+        Car GetCarById(int reservationId);
+
+        void CreateCar(Car car);
 
         bool CarExists(int carId);
 
+        bool ExternalCarExists(int externalCarId);
+        List<Car> GetAllCars();
     }
 }

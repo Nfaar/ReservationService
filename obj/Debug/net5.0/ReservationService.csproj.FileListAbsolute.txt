@@ -70,3 +70,4 @@ C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual
 C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\log4net.config
 C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\log4net.dll
 C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
+C:\Users\Viktor Naydenov\Desktop\Fontys\Fontys\Assignments\Semester 6\Individual Project\swagon-microservices\ReservationService\bin\Debug\net5.0\RabbitMQ.Client.dll

@@ -9,7 +9,7 @@ using ReservationService.Models;
 
 namespace ReservationService.Controllers
 {
-    [Route("api/r/[controller]")]
+    [Route("api/r/cars")]
     [ApiController]
     public class CarsController : ControllerBase
     {
@@ -25,16 +25,23 @@ namespace ReservationService.Controllers
         }
 
         [HttpGet]
-        public ActionResult<CarReadDto> GetCarByReservationId(int reservationId)
+        public ActionResult<IEnumerable<CarReadDto>> GetCars()
         {
-            System.Console.WriteLine($"--> Hit GetCarByReservationId: {reservationId}");
+            var allCars = this.repository.GetAllCars();
+            return Ok(this.mapper.Map<IEnumerable<CarReadDto>>(allCars));
+        }
 
-            if (!this.repository.ReservationExists(reservationId))
+        [HttpGet("{carId}")]
+        public ActionResult<CarReadDto> GetCarById(int carId)
+        {
+            System.Console.WriteLine($"--> Hit GetCarByReservationId: {carId}");
+
+            if (!this.repository.ReservationExists(carId))
             {
                 return NotFound();
             }
 
-            var car = this.repository.GetCarByReservationId(reservationId);
+            var car = this.repository.GetCarById(carId);
 
             return Ok(this.mapper.Map<CarReadDto>(car));
         }

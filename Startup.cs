@@ -12,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using ReservationService.AsyncDataServices;
 using ReservationService.Data;
+using ReservationService.EventProcessing;
 
 namespace ReservationService
 {
@@ -45,6 +47,10 @@ namespace ReservationService
             services.AddScoped<IReservationRepo, ReservationRepo>();
 
             services.AddControllers();
+
+            services.AddHostedService<MessageBusSubscriber>();
+
+            services.AddSingleton<IEventProcessor, EventProcessor>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c =>
             {
