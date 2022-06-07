@@ -13,6 +13,11 @@ namespace ReservationService.Data
         {
             this.context = context;
         }
+
+        public ReservationRepo()
+        {
+
+        }
         // Reservations
         public void CreateReservation(Reservation reservation)
         {
